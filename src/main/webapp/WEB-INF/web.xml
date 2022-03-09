@@ -10,8 +10,18 @@
   	<description></description>
   	<servlet-class>com.ecommerce.controller.InsertProductController</servlet-class>
   </servlet>
+  <servlet>
+  	<servlet-name>ProductListController</servlet-name>
+  	<display-name>ProductListController</display-name>
+  	<description></description>
+  	<servlet-class>com.ecommerce.controller.ProductListController</servlet-class>
+  </servlet>
   <servlet-mapping>
   	<servlet-name>InsertProductController</servlet-name>
   	<url-pattern>/insertproductcontroller</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>ProductListController</servlet-name>
+  	<url-pattern>/productlistcontroller</url-pattern>
   </servlet-mapping>
 </web-app>

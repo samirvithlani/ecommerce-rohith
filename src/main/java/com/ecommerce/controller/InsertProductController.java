@@ -6,6 +6,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.ecommerce.bean.ProductBean;
+import com.ecommerce.dao.ProductDao;
+
 /**
  * Servlet implementation class InsertProductController
  */
@@ -38,8 +41,21 @@ public class InsertProductController extends HttpServlet {
 		}
 		String pDescription = request.getParameter("txtProductDescription");
 		int cId = Integer.parseInt(request.getParameter("cid"));
-		
-		
+
+		ProductBean productBean = new ProductBean();
+		productBean.setpName(pName);
+		productBean.setpPrice(pPrice);
+		productBean.setcId(cId);
+		productBean.setpDescription(pDescription);
+
+		ProductDao productDao = new ProductDao();
+		boolean flag = productDao.addProduct(productBean);
+		if (flag == true) {
+
+			response.sendRedirect("productlistcontroller");
+		} else {
+			response.sendError(500);
+		}
 
 		doGet(request, response);
 	}

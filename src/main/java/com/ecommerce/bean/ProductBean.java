@@ -7,6 +7,15 @@ public class ProductBean {
 	private String pDescription;
 	private int pPrice;
 	private int cId;
+	private String cName;
+
+	public String getcName() {
+		return cName;
+	}
+
+	public void setcName(String cName) {
+		this.cName = cName;
+	}
 
 	public int getpId() {
 		return pId;
