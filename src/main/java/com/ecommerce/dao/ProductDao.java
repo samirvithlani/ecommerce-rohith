@@ -12,6 +12,39 @@ import com.ecommerce.util.DBConnection;
 
 public class ProductDao {
 
+	public List<ProductBean> searchList(String name) {
+
+		List<ProductBean> list = new ArrayList<ProductBean>();
+		Connection conn = DBConnection.getConnection();
+		if (conn != null) {
+
+			String searchSQl = "select * from product natural join category where pname = ?";
+			try {
+				PreparedStatement pstmt = conn.prepareStatement(searchSQl);
+				pstmt.setString(1, name);
+				ResultSet rs = pstmt.executeQuery();
+				while (rs.next()) {
+
+					ProductBean productBean = new ProductBean();
+					productBean.setpId(rs.getInt("pid"));
+					productBean.setpName(rs.getString("pname"));
+					productBean.setpPrice(rs.getInt("pprice"));
+					productBean.setcId(rs.getInt("cid"));
+					productBean.setpDescription(rs.getString("pdescription"));
+					productBean.setcName(rs.getString("cname"));
+					list.add(productBean);
+				}
+
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
+		}
+
+		return list;
+	}
+
 	public boolean addProduct(ProductBean productBean) {
 
 		boolean flag = false;
@@ -74,4 +107,5 @@ public class ProductDao {
 
 		return productlist;
 	}
+	
 }

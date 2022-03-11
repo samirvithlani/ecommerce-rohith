@@ -12,9 +12,9 @@ import com.ecommerce.bean.ProductBean;
 import com.ecommerce.dao.ProductDao;
 
 /**
- * Servlet implementation class ProductListController
+ * Servlet implementation class SearchController
  */
-public class ProductListController extends HttpServlet {
+public class SearchController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
@@ -23,21 +23,12 @@ public class ProductListController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		response.getWriter().append("Served at: ").append(request.getContextPath());
-		System.out.println("called....");
+		String searchValue = request.getParameter("search");
 		
-		List<ProductBean> products = new ProductDao().listofProducts();
+		List<ProductBean> searchResult = new ProductDao().searchList(searchValue);
 		
-		Object search = request.getAttribute("searchData");
-		
-		if(search!=null) {
-			
-			request.setAttribute("products", search);
-		}
-		else {
-		
-			request.setAttribute("products", products);
-		}
-		request.getRequestDispatcher("productList.jsp").forward(request, response);
+		request.setAttribute("searchData", searchResult);
+		request.getRequestDispatcher("productlistcontroller").forward(request, response);
 		
 	}
 

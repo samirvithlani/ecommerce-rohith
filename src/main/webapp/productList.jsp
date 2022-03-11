@@ -11,7 +11,12 @@
 <title>Insert title here</title>
 </head>
 <body>
-hello
+	<form action="searchcontroller">
+
+		search<input type="text" name="search"> <input type="submit"
+			value="search">
+
+	</form>
 	<table style="border: solid; color: red;">
 		<tr>
 			<th>PRODUCT ID</th>
@@ -40,17 +45,21 @@ hello
 		<%
 			}
 		%> --%>
-		<c:forEach var="products"  items="${products}">
-		<tr>
-		
-		 <td>${products.pId }</td>
-		<td>${products.pName }</td>
-		<td>${products.pPrice }</td>
-		<td>${products.pDescription }</td>
-		<td>${products.cName }</td>
-		</tr>
-		
+
+	
+			<c:forEach var="products" items="${products}">
+			<tr>
+
+				<td>${products.pId }</td>
+				<td>${products.pName }</td>
+				<td>${products.pPrice }</td>
+				<td>${products.pDescription }</td>
+				<td>${products.cName }</td>
+			</tr>
+
 		</c:forEach>
+		
+		
 
 	</table>
 </body>
